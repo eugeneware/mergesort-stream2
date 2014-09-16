@@ -51,7 +51,6 @@ function mergesort(cmp, streams) {
     }, 0);
 
     if (endedCount === streams.length && active === 0 && buf.length === 0) {
-      ended = true;
       d.push(null);
     }
   }
@@ -62,12 +61,15 @@ function mergesort(cmp, streams) {
     ended[id] = false;
 
     s.on('readable', function () {
-      var data = s.read();
-      if (data !== null) {
-        bs.insert(buf, [id, data], function (a, b) {
-          return cmp(a[1], b[1]);
-        });
-        full[id]++;
+      var data;;
+
+      while (null !== (data = s.read())) {
+        if (data !== null) {
+          bs.insert(buf, [id, data], function (a, b) {
+            return cmp(a[1], b[1]);
+          });
+          full[id]++;
+        }
       }
       kick();
     });
