@@ -1,0 +1,38 @@
+{
+  "name": "mergesort-stream2",
+  "version": "1.0.0",
+  "description": "Merge sorted data from multiple streams into one using streams 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eugeneware/mergesort-stream2"
+  },
+  "keywords": [
+    "merge",
+    "mergesort",
+    "merging",
+    "sort",
+    "stream",
+    "streaming",
+    "streams"
+  ],
+  "author": "Eugene Ware <eugene@noblesamurai.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/eugeneware/mergesort-stream2/issues"
+  },
+  "dependencies": {
+    "JSONStream": "^0.9.0",
+    "binarysearch": "^0.2.4",
+    "debug": "^2.0.0"
+  },
+  "devDependencies": {
+    "expect.js": "~0.2.0",
+    "redtape": "~0.1.0",
+    "tape": "~2.3.2",
+    "concat-stream": "^1.4.6"
+  }
+}
