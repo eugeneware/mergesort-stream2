@@ -1,6 +1,6 @@
 var Readable = require('stream').Readable,
+    Writable = require('stream').Writable,
     bs = require('binarysearch'),
-    through2 = require('through2'),
     debug = require('debug')('mergesort-stream2');
 
 function _cmp(a, b) {
@@ -61,7 +61,11 @@ function mergesort(cmp, streams) {
     full[id] = 0;
     ended[id] = false;
 
-    s.pipe(through2.obj(write, end));
+    var ws = Writable({ objectMode: true });
+    ws._write = write;
+
+    s.pipe(ws);
+    s.on('end', end);
 
     function write(data, enc, cb) {
       bs.insert(buf, [id, data], function (a, b) {
@@ -70,6 +74,7 @@ function mergesort(cmp, streams) {
       full[id]++;
       kick();
       cb();
+      return true;
     }
 
     function end() {
