@@ -1,6 +1,6 @@
 {
   "name": "mergesort-stream2",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Merge sorted data from multiple streams into one using streams 2",
   "main": "index.js",
   "scripts": {
